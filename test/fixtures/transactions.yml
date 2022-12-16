@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  montant_donne: 9.99
+  numero_operation: MyString
+  type_transaction: MyString
+  date_transaction: 2022-12-15 20:52:00
+
+two:
+  montant_donne: 9.99
+  numero_operation: MyString
+  type_transaction: MyString
+  date_transaction: 2022-12-15 20:52:00
