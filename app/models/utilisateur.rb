@@ -3,4 +3,9 @@ class Utilisateur < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :utilisateur_roles
+  has_many :roles, through: :utilisateur_roles
+
+  
 end

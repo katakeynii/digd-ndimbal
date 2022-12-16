@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Mairies</h1>
+
+<div id="mairies">
+  <% @mairies.each do |mairy| %>
+    <%= render mairy %>
+    <p>
+      <%= link_to "Show this mairie", mairy %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New mairie", new_mairy_path %>

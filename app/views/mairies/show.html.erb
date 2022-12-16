@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @mairy %>
+
+<div>
+  <%= link_to "Edit this mairie", edit_mairy_path(@mairy) %> |
+  <%= link_to "Back to mairies", mairies_path %>
+
+  <%= button_to "Destroy this mairie", @mairy, method: :delete %>
+</div>

@@ -1,0 +1,2 @@
+module MairiesHelper
+end

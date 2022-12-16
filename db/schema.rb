@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_16_105609) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_16_115735) do
   create_table "agents", force: :cascade do |t|
     t.string "nom"
     t.string "prenom"
@@ -78,6 +78,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_105609) do
     t.index ["famille_id"], name: "index_membres_on_famille_id"
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.string "name"
+    t.integer "role_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_permissions_on_role_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.string "nom"
     t.string "photo_type", null: false
@@ -92,6 +100,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_105609) do
     t.date "date_debut"
     t.date "date_fin"
     t.string "etat"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -117,6 +131,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_105609) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "utilisateur_roles", force: :cascade do |t|
+    t.integer "utilisateur_id", null: false
+    t.integer "role_id", null: false
+    t.datetime "expire_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["role_id"], name: "index_utilisateur_roles_on_role_id"
+    t.index ["utilisateur_id"], name: "index_utilisateur_roles_on_utilisateur_id"
+  end
+
   create_table "utilisateurs", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -136,7 +160,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_105609) do
   add_foreign_key "detail_recensements", "recensements"
   add_foreign_key "familles", "communes"
   add_foreign_key "membres", "familles"
+  add_foreign_key "permissions", "roles"
   add_foreign_key "subventions", "familles"
   add_foreign_key "subventions", "mairies", column: "mairie_id"
   add_foreign_key "subventions", "transactions"
+  add_foreign_key "utilisateur_roles", "roles"
+  add_foreign_key "utilisateur_roles", "utilisateurs"
 end
